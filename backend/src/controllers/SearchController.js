@@ -21,6 +21,8 @@ module.exports = {
                 }
             }
         });
+        console.log(devs);
+        
         return res.json(devs);
         
     }
