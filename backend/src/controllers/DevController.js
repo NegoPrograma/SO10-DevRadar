@@ -41,6 +41,7 @@ module.exports = {
             });
             return res.json(dev);
         }
+        return res.json(devCheck);
     },
     async update(req,res){
         const {techs,latitude,longitude,name,bio,avatar_url} = req.body;
