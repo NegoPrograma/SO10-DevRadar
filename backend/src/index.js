@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const routes = require('./routes.js');
+
+
 const app = express();
 
 //conectando com o banco usando o mongoose após pegar a string connection no próprio mongoDB Atlas.
@@ -9,7 +12,8 @@ mongoose.connect("mongodb+srv://admin-isaac:admin@cluster0-vyins.mongodb.net/SO1
     useUnifiedTopology: true
 })
 
-
+//o cors permite o acesso da API em outros HOSTS além do serverListener da instancia app.
+app.use(cors());
 //aqui, estamos dizendo que o express será capaz de pegar informações
 //do tipo JSON
 app.use(express.json());
