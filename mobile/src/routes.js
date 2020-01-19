@@ -10,6 +10,7 @@ const Routes = createAppContainer(
   createStackNavigator({
     Main: {
         screen: Main,
+        headerTitleAlign: 'center',
         navigationOptions: {
             title: 'DevRadar'
         },
