@@ -1,10 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors');
+const http = require('http');
 const routes = require('./routes.js');
-
+const { setupWebsocket} = require('./websocket')
 
 const app = express();
+const server = http.Server(app);
+
+
+setupWebsocket(server);
 
 //conectando com o banco usando o mongoose após pegar a string connection no próprio mongoDB Atlas.
 mongoose.connect("mongodb+srv://admin-isaac:admin@cluster0-vyins.mongodb.net/SO10DB?retryWrites=true&w=majority",{
@@ -37,4 +42,4 @@ deter informações a cerca de dados enviados por formulários
 
 
 
-app.listen(3333);
+server.listen(3333);

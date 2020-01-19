@@ -1,7 +1,7 @@
 const Dev = require("../models/Dev");
 const axios = require('axios');
 const parseStringAsArray = require("../utils/parseArrayAsString");
-
+const { findConnections, sendMessage } = require('../websocket');
 //geralmente o controller tem 5 métodos:
 //index, show, store, update, delete
 //lista os users, mostra 1, registra 1, atualiza 1 e deleta 1.
@@ -39,6 +39,10 @@ module.exports = {
                 location,
                 techs: techList
             });
+            //aplicando o real-time aos registros de novos usuários
+            const sendSocketMessageTo = findConnections({latitude,longitude},techList);
+            sendMessage(sendSocketMessageTo, 'new-dev!',dev);
+            
             return res.json(dev);
         }
         return res.json(devCheck);
